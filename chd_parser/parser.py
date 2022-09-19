@@ -21,6 +21,6 @@ class CHDParser():
             self.__collect_headers(cur_path, all_files)
         else:
             if file.endswith(".h") or file.endswith(".cc"):
-              all_files.append(os.path.join(path, file))
+              all_files.append((file, os.path.join(path, file)))
 
     return all_files
