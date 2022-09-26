@@ -5,7 +5,7 @@ from chd_parser import dot_writer
 
 par = parser.CHDParser()
 
-root_path = "/mnt/c/Users/chao01.ma/ts/github/test_protobuf/protobuf-3.19.3/michaelma/bin/cxx2"
+root_path = ""
 pass_suffixs = [".h", ".hpp", ".cpp", ".c", "cxx", "cc"]
 exclude_names = ["wrapper", ".pb."]
 
