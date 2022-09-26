@@ -5,7 +5,7 @@ import re
 from string import Template
 from . import dag
 
-DOT_TEMPLATE_STRING = '"$ONE" -- "$TWO";'
+DOT_TEMPLATE_STRING = '"$ONE" -> "$TWO";'
 DTSI = Template(DOT_TEMPLATE_STRING)
 
 class CHDParser():

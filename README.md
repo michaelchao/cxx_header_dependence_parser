@@ -1,37 +1,33 @@
-f = open(idl_path, 'r')
-lines = []
-line_number = 1
-for line in f:
-    lines.append((line_number, idl_path, line))
-    line_number = line_number + 1
+# Introduce
 
-self.parse_lines(lines)
+输出C/C++工程中所有源文件，头文件之间的依赖关系
 
-https://www.zhihu.com/question/466249845
-https://www.python.org/doc/essays/graphs/
-https://mindee.com/blog/directed-acyclic-graph-dag-scheduler-library/
-https://davidtorpey.com/2021/05/03/pydags.html
-https://graphviz.org/docs/layouts/dot/#:~:text=dot%20%E2%80%98hierarchical%E2%80%99%20%28or%20layered%29%20drawings%20of%20directed%20graphs.,to%20avoid%20edge%20crossings%20and%20reduce%20edge%20length.
+# 将输出内容利用dot生成图片
 
-dot -Tpng -o process.png test.gv
+## gv文件内容
 
+```do
+digraph G {
+bgcolor = gray;
+rankdir = LR;
+ratio = auto;
 
-'''
-    for line in f:
-      if line.startswith("#"):
-        if line.find('google') < 0 and line.find('proto') < 0:
-          if line.find('include') >= 0:
-            if line.find('"') >= 0:
-              file = line[line.find('"')+1:line.rfind('"')].strip()
-            elif line.find('<') >= 0:
-              file = line[line.find('<')+1:line.rfind('>')].strip()
-            included_filenames.append(file)
-    #def get_fullpath(abs_filename):
-    #  if os.path.basename(abs_filename) in included_filenames:
-    #    included_filepaths.append(abs_filename)
-    #    included_filenames.remove(os.path.basename(abs_filename))
+... // 将输入内容粘贴到这儿
 
-    #self.for_each_idl(get_fullpath, find_all=True)
-    #if len(included_filenames) > 0:
-    #    raise exception.IDLCanNotFindException()
-'''
+}
+```
+
+## 命令
+
+```s
+dot -Tpng -o <目标>.png <源>.gv
+```
+
+# Reference
+
+- [python列表如何依次取2个元素？](https://www.zhihu.com/question/466249845)
+- [Python Patterns - Implementing Graphs](https://www.python.org/doc/essays/graphs/)
+- [Directed Acyclic Graph (DAG) Scheduler library](https://mindee.com/blog/directed-acyclic-graph-dag-scheduler-library/)
+- [pydags - A lightweight DAG framework for Python](https://davidtorpey.com/2021/05/03/pydags.html)
+- [‘hierarchical’ (or layered) drawings of directed graphs.](https://graphviz.org/docs/layouts/dot/#:~:text=dot%20%E2%80%98hierarchical%E2%80%99%20%28or%20layered%29%20drawings%20of%20directed%20graphs.,to%20avoid%20edge%20crossings%20and%20reduce%20edge%20length.)
+- [Distance between edges and nodes in graphviz](https://stackoom.com/en/question/Ph7e)
