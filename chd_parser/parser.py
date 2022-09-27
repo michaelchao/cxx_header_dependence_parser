@@ -13,13 +13,14 @@ class CHDParser():
     pass
 
 
-  def parse(self, root_path="./", pass_suffixs=[], exclude_names=[]):
+  def parse(self, root_path="./", pass_suffixs=[], exclude_names=[], exclude_dirs=[]):
     '''
 
     '''
     self.__root_path = root_path
     self.__pass_suffixs = pass_suffixs
     self.__exclude_names = exclude_names
+    self.__exclude_dirs = exclude_dirs
     all_files = []
     all_files = self.__collect_targets(root_path, all_files)
     return self.__collect_dot(all_files)
@@ -33,10 +34,11 @@ class CHDParser():
     for file in file_list:
         cur_path = os.path.join(path, file)
         if os.path.isdir(cur_path):
+          if file not in self.__exclude_dirs:
             self.__collect_targets(cur_path, all_files)
         else:
-            if any(file.endswith(keyword) for keyword in self.__pass_suffixs):
-              all_files.append((file, os.path.join(path, file)))
+          if any(file.endswith(keyword) for keyword in self.__pass_suffixs):
+            all_files.append((file, os.path.join(path, file)))
 
     return all_files
 
