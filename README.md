@@ -1,23 +1,6 @@
 # Introduce
 
-输出C/C++工程中所有源文件，头文件之间的依赖关系
-
-# 将输出内容利用dot生成图片
-
-## gv文件内容
-
-```do
-digraph G {
-bgcolor = gray;
-rankdir = LR;
-ratio = auto;
-
-... // 将输入内容粘贴到这儿
-
-}
-```
-
-## 命令
+输出C/C++工程中所有源文件，头文件之间的依赖关系，参考test.py，会生成一个gv文件，然后使用下面的命令生成dot图
 
 ```s
 dot -Tpng -o <目标>.png <源>.gv
@@ -34,5 +17,5 @@ dot -Tpng -o <目标>.png <源>.gv
 
 # TODO
 
-[] color for key node, for example the file contains **main()**
-[] matched header and source files use same color, for example, A.h and A.cpp use same color
+- [] color for key node, for example the file contains **main()**
+- [] matched header and source files use same color, for example, A.h and A.cpp use same color
